@@ -211,68 +211,27 @@ async def create_sales_order(customer_name: str, items: List[Dict[str, Any]], de
 
 @app.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
-    """Main chat endpoint that processes user queries using OpenAI function calling"""
+    """Main chat endpoint that processes user queries using OpenAI"""
     
     try:
-        # Call OpenAI with function calling
+        # Call OpenAI for a simple response
         response = client.chat.completions.create(
             model="gpt-4",
             messages=[
                 {
                     "role": "system",
-                    "content": "You are an AI assistant that helps with business operations. When a user asks you to perform a task, use the available functions to execute the request. Always extract the necessary parameters from the user's message and call the appropriate function."
+                    "content": "You are an AI assistant that helps with business operations. You can help with creating purchase orders, managing inventory, and processing requisitions. Be helpful and informative."
                 },
                 {
                     "role": "user",
                     "content": request.message
                 }
-            ],
-            functions=FUNCTIONS,
-            function_call="auto"
+            ]
         )
         
         message = response.choices[0].message
         
-        # Check if a function was called
-        if message.function_call:
-            function_name = message.function_call.name
-            function_args = json.loads(message.function_call.arguments)
-            
-            # Call the appropriate function
-            if function_name == "create_purchase_order":
-                result = await create_purchase_order(**function_args)
-            elif function_name == "create_inventory_item":
-                result = await create_inventory_item(**function_args)
-            elif function_name == "get_inventory_status":
-                result = await get_inventory_status(**function_args)
-            elif function_name == "create_sales_order":
-                result = await create_sales_order(**function_args)
-            else:
-                raise HTTPException(status_code=400, detail=f"Unknown function: {function_name}")
-            
-            # Generate a natural language response
-            response_message = client.chat.completions.create(
-                model="gpt-4",
-                messages=[
-                    {
-                        "role": "system",
-                        "content": "You are a helpful assistant. Provide a natural language response based on the function result. Be concise and informative."
-                    },
-                    {
-                        "role": "user",
-                        "content": f"Function {function_name} was called with parameters {function_args} and returned: {result}. Please provide a natural language response to the user."
-                    }
-                ]
-            )
-            
-            return ChatResponse(
-                response=response_message.choices[0].message.content,
-                function_called=function_name,
-                parameters=function_args
-            )
-        else:
-            # No function was called, return the assistant's response
-            return ChatResponse(response=message.content)
+        return ChatResponse(response=message.content)
             
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error processing request: {str(e)}")
