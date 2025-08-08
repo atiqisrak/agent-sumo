@@ -7,6 +7,11 @@ set -e
 
 echo "🛑 Stopping Agent Sumo Microservices..."
 
+# stop ports 3000, 8000, 3002
+lsof -ti:3000 | xargs kill -9
+lsof -ti:8000 | xargs kill -9
+lsof -ti:3002 | xargs kill -9
+
 # Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
