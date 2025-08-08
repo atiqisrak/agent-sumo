@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import ChatSidebar from "./chat/ChatSidebar";
 import ChatMessage from "./chat/ChatMessage";
 import ChatInput from "./chat/ChatInput";
@@ -31,8 +32,15 @@ export default function ChatWidget() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   const { settings, updateSettings } = useSettings();
+  const pathname = usePathname();
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const navItems = [
+    { href: "/promo", label: "Home" },
+    { href: "/docs", label: "Documentation" },
+    { href: "/features", label: "Features" },
+  ];
 
   // Fix hydration error
   useEffect(() => {
@@ -165,10 +173,10 @@ export default function ChatWidget() {
 
   if (!mounted) {
     return (
-      <div className="flex h-screen bg-[var(--color-gray-900)] text-[var(--color-white)] items-center justify-center">
+      <div className="flex h-screen bg-gray-900 text-white items-center justify-center">
         <div className="flex items-center space-x-3">
-          <div className="w-8 h-8 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] rounded-lg flex items-center justify-center">
-            <SparklesIcon className="w-5 h-5 text-[var(--color-white)]" />
+          <div className="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center">
+            <SparklesIcon className="w-5 h-5 text-white" />
           </div>
           <h1 className="text-xl font-bold">Agent Sumo</h1>
         </div>
@@ -177,7 +185,7 @@ export default function ChatWidget() {
   }
 
   return (
-    <div className="flex h-screen bg-[var(--color-gray-900)] text-[var(--color-white)]">
+    <div className="flex h-screen bg-gray-900 text-white">
       <ChatSidebar
         sidebarCollapsed={sidebarCollapsed}
         setSidebarCollapsed={setSidebarCollapsed}
@@ -190,12 +198,12 @@ export default function ChatWidget() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <div className="bg-[var(--color-gray-800)] border-b border-[var(--color-gray-700)] px-6 py-4">
+        <div className="bg-gray-800 border-b border-gray-700 px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
                 onClick={startNewChat}
-                className="px-4 py-2 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] hover:from-[var(--color-primary-dark)] hover:to-[var(--color-secondary-dark)] rounded-xl transition-all duration-200 font-medium shadow-lg"
+                className="px-4 py-2 bg-gradient-to-r from-primary to-secondary hover:from-primary-dark hover:to-secondary-dark rounded-xl transition-all duration-200 font-medium shadow-lg"
               >
                 New Chat
               </button>
@@ -203,31 +211,27 @@ export default function ChatWidget() {
 
             {/* Navigation Items */}
             <div className="flex items-center space-x-6">
-              <Link
-                href="/"
-                className="text-[var(--color-gray-300)] hover:text-[var(--color-white)] transition-colors"
-              >
-                Home
-              </Link>
-              <Link
-                href="/docs"
-                className="text-[var(--color-gray-300)] hover:text-[var(--color-white)] transition-colors"
-              >
-                Documentation
-              </Link>
-              <Link
-                href="/features"
-                className="text-[var(--color-gray-300)] hover:text-[var(--color-white)] transition-colors"
-              >
-                Features
-              </Link>
+              {navItems.map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`transition-colors ${
+                      isActive
+                        ? "text-white font-medium"
+                        : "text-gray-300 hover:text-white"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
             </div>
 
             <div className="flex items-center space-x-2">
-              <span className="text-sm text-[var(--color-gray-400)]">
-                Private
-              </span>
-              <div className="w-2 h-2 bg-[var(--color-success)] rounded-full"></div>
+              <span className="text-sm text-gray-400">Private</span>
+              <div className="w-2 h-2 bg-success rounded-full"></div>
               <SettingsButton onClick={() => setIsSettingsOpen(true)} />
             </div>
           </div>

@@ -8,6 +8,7 @@ import {
   FileText,
   Clock,
   ChevronLeft,
+  ChevronDown,
   Mic,
   Zap,
   Globe,
@@ -68,6 +69,14 @@ export function ChevronLeftIcon({
   className?: string;
 }) {
   return <ChevronLeft className={className} />;
+}
+
+export function ChevronDownIcon({
+  className = "w-5 h-5",
+}: {
+  className?: string;
+}) {
+  return <ChevronDown className={className} />;
 }
 
 export function MicIcon({ className = "w-5 h-5" }: { className?: string }) {

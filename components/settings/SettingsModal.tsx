@@ -57,7 +57,7 @@ export default function SettingsModal({
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center space-x-3">
-            <SettingsIcon className="w-6 h-6 text-blue-400" />
+            <SettingsIcon className="w-6 h-6 text-primary" />
             <h2 className="text-xl font-semibold text-white">Settings</h2>
           </div>
           <button
@@ -81,7 +81,7 @@ export default function SettingsModal({
                   theme: e.target.value as "dark" | "light",
                 })
               }
-              className="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-blue-500"
+              className="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-primary"
             >
               <option value="dark">Dark</option>
               <option value="light">Light</option>
@@ -101,7 +101,7 @@ export default function SettingsModal({
                   model: e.target.value,
                 })
               }
-              className="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-blue-500"
+              className="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-primary"
             >
               <option value="Agent Sumo">Agent Sumo (Chatbot)</option>
               <option value="Agent Sumo Pro">
@@ -123,7 +123,7 @@ export default function SettingsModal({
                   fontSize: e.target.value as "small" | "medium" | "large",
                 })
               }
-              className="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-blue-500"
+              className="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-primary"
             >
               <option value="small">Small</option>
               <option value="medium">Medium</option>
@@ -144,7 +144,7 @@ export default function SettingsModal({
                   language: e.target.value,
                 })
               }
-              className="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-blue-500"
+              className="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-primary"
             >
               <option value="en">English</option>
               <option value="es">Spanish</option>
@@ -171,7 +171,7 @@ export default function SettingsModal({
                   })
                 }
                 className={`w-12 h-6 rounded-full transition-colors ${
-                  localSettings.autoSave ? "bg-blue-600" : "bg-gray-600"
+                  localSettings.autoSave ? "bg-primary" : "bg-gray-600"
                 }`}
               >
                 <div
@@ -197,7 +197,7 @@ export default function SettingsModal({
                   })
                 }
                 className={`w-12 h-6 rounded-full transition-colors ${
-                  localSettings.notifications ? "bg-blue-600" : "bg-gray-600"
+                  localSettings.notifications ? "bg-primary" : "bg-gray-600"
                 }`}
               >
                 <div
@@ -222,7 +222,7 @@ export default function SettingsModal({
           </button>
           <button
             onClick={handleSave}
-            className="flex-1 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg transition-all duration-200 flex items-center justify-center space-x-2"
+            className="flex-1 px-4 py-2 bg-gradient-to-r from-primary to-secondary hover:from-primary-dark hover:to-secondary-dark text-white rounded-lg transition-all duration-200 flex items-center justify-center space-x-2"
           >
             <SaveIcon className="w-4 h-4" />
             <span>Save</span>

@@ -46,7 +46,7 @@ export default function ChatInput({
   return (
     <div className="bg-gray-800 border-t border-gray-700 p-6">
       <div className="max-w-4xl mx-auto">
-        <div className="flex items-end space-x-3 bg-gray-700 rounded-2xl border border-gray-600 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500 transition-all duration-200 p-4 shadow-lg">
+        <div className="flex items-end space-x-3 bg-gray-700 rounded-2xl border border-gray-600 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary transition-all duration-200 p-4 shadow-lg">
           <MicIcon className="w-5 h-5 text-gray-400 flex-shrink-0" />
           <textarea
             ref={textareaRef}
@@ -62,7 +62,7 @@ export default function ChatInput({
             <select
               value={selectedModel}
               onChange={(e) => setSelectedModel(e.target.value)}
-              className="bg-gray-600 text-white text-sm rounded-lg px-3 py-1.5 border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+              className="bg-gray-600 text-white text-sm rounded-lg px-3 py-1.5 border border-gray-500 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200"
             >
               <option value="Agent Sumo Pro">Agent Sumo Pro</option>
               <option value="Agent Sumo Basic">Agent Sumo Basic</option>
@@ -70,7 +70,7 @@ export default function ChatInput({
             <button
               onClick={onSendMessage}
               disabled={!inputMessage.trim() || isLoading}
-              className="p-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex-shrink-0 hover:scale-105 active:scale-95 shadow-lg"
+              className="p-2.5 bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:from-primary-dark hover:to-secondary-dark focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex-shrink-0 hover:scale-105 active:scale-95 shadow-lg"
             >
               <SendIcon className="w-5 h-5" />
             </button>

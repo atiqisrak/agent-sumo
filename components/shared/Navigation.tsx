@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { SparklesIcon } from "../icons";
+import Image from "next/image";
 
 interface NavigationProps {
   showLogo?: boolean;
@@ -14,6 +16,15 @@ export default function Navigation({
   className = "",
   showNavItems = true,
 }: NavigationProps) {
+  const pathname = usePathname();
+
+  const navItems = [
+    { href: "/", label: "Home" },
+    { href: "/chat", label: "Chat" },
+    { href: "/docs", label: "Documentation" },
+    { href: "/features", label: "Features" },
+  ];
+
   return (
     <nav
       className={`bg-gray-900/50 backdrop-blur-sm border-b border-gray-700 ${className}`}
@@ -22,40 +33,36 @@ export default function Navigation({
         <div className="flex justify-between items-center py-4">
           {showLogo && (
             <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                  <SparklesIcon className="w-5 h-5 text-white" />
-                </div>
-                <span className="text-xl font-bold text-white">Agent Sumo</span>
+              <div className="flex items-center">
+                <Image
+                  src="/logo/logo-horizontal.svg"
+                  alt="Agent Sumo"
+                  className="h-8"
+                  height={32}
+                  width={128}
+                />
+                <h1 className="text-xl font-bold text-primary">Agent</h1>
               </div>
             </div>
           )}
           {showNavItems && (
             <div className="flex items-center space-x-6">
-              <Link
-                href="/"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                Home
-              </Link>
-              <Link
-                href="/chat"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                Chat
-              </Link>
-              <Link
-                href="/docs"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                Documentation
-              </Link>
-              <Link
-                href="/features"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                Features
-              </Link>
+              {navItems.map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`transition-colors ${
+                      isActive
+                        ? "text-white font-medium"
+                        : "text-gray-300 hover:text-white"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
             </div>
           )}
         </div>

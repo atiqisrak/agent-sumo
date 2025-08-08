@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Footer from "../components/promo/Footer";
+import Footer from "../components/shared/Footer";
 import { SearchIcon, HomeIcon, SparklesIcon } from "../components/icons";
 import Navigation from "@/components/shared/Navigation";
 

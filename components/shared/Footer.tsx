@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { SparklesIcon } from "../icons";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -9,11 +9,15 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <SparklesIcon className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-xl font-bold text-white">Agent Sumo</span>
+            <div className="flex items-center  mb-4">
+              <Image
+                src="/logo/logo-horizontal.svg"
+                alt="Agent Sumo"
+                className="h-8"
+                height={32}
+                width={128}
+              />
+              <h1 className="text-xl font-bold text-primary">Agent</h1>
             </div>
             <p className="text-gray-400">
               Powerful AI agents for modern business operations.
@@ -108,7 +112,11 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 Agent Sumo. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()}{" "}
+            <Link href="https://www.github.com/atiqisrak"> Atiq Israk</Link>.
+            All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

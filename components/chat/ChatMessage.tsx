@@ -23,7 +23,7 @@ export default function ChatMessage({ message }: ChatMessageProps) {
         <div
           className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg ${
             message.sender === "user"
-              ? "bg-gradient-to-r from-blue-500 to-purple-600"
+              ? "bg-gradient-to-r from-primary to-secondary"
               : "bg-gradient-to-r from-gray-600 to-gray-700"
           }`}
         >
@@ -43,7 +43,7 @@ export default function ChatMessage({ message }: ChatMessageProps) {
           <div
             className={`inline-block px-6 py-4 rounded-2xl shadow-lg ${
               message.sender === "user"
-                ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+                ? "bg-gradient-to-r from-primary to-secondary text-white"
                 : "bg-gray-700 text-gray-100 border border-gray-600"
             }`}
           >
@@ -54,12 +54,12 @@ export default function ChatMessage({ message }: ChatMessageProps) {
             </div>
 
             {message.functionCalled && (
-              <div className="mt-3 p-3 bg-blue-900 rounded-lg border border-blue-700">
-                <p className="text-sm font-medium text-blue-200">
+              <div className="mt-3 p-3 bg-primary-900 rounded-lg border border-primary-700">
+                <p className="text-sm font-medium text-primary-200">
                   Function called: {message.functionCalled}
                 </p>
                 {message.parameters && (
-                  <pre className="text-xs text-blue-300 mt-2 overflow-x-auto">
+                  <pre className="text-xs text-primary-300 mt-2 overflow-x-auto">
                     {JSON.stringify(message.parameters, null, 2)}
                   </pre>
                 )}

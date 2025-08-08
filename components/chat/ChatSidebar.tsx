@@ -36,7 +36,7 @@ export default function ChatSidebar({
       <div className="p-4">
         {/* Logo */}
         <div className="flex items-center space-x-3 mb-6">
-          <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+          <div className="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-xl flex items-center justify-center shadow-lg">
             <Image
               src="/logo/icon.png"
               alt="Agent Sumo"
@@ -47,7 +47,7 @@ export default function ChatSidebar({
           </div>
           {!sidebarCollapsed && (
             <div>
-              <h1 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 Agent Sumo
               </h1>
               <p className="text-xs text-gray-400">AI Assistant</p>
@@ -63,7 +63,7 @@ export default function ChatSidebar({
               <input
                 type="text"
                 placeholder="Search ⌘K"
-                className="w-full pl-10 pr-4 py-2.5 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                className="w-full pl-10 pr-4 py-2.5 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
               />
             </div>
           </div>
@@ -73,7 +73,7 @@ export default function ChatSidebar({
         <nav className="space-y-2">
           <a
             href="#"
-            className="flex items-center space-x-3 px-3 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white shadow-lg"
+            className="flex items-center space-x-3 px-3 py-2.5 bg-gradient-to-r from-primary to-secondary rounded-xl text-white shadow-lg"
           >
             <MessageIcon className="w-5 h-5" />
             {!sidebarCollapsed && <span className="font-medium">Chat</span>}
@@ -117,7 +117,7 @@ export default function ChatSidebar({
                   </button>
                   <button
                     onClick={() => onDeleteChat(chat.id)}
-                    className="opacity-0 group-hover:opacity-100 absolute right-2 top-1/2 transform -translate-y-1/2 text-red-400 hover:text-red-300 transition-opacity"
+                    className="opacity-0 group-hover:opacity-100 absolute right-2 top-1/2 transform -translate-y-1/2 text-error hover:text-error-light transition-opacity"
                   >
                     ×
                   </button>

@@ -6,7 +6,12 @@ import Navigation from "../../components/shared/Navigation";
 import Hero from "../../components/promo/Hero";
 import FeatureCard from "../../components/promo/FeatureCard";
 import ProcessStep from "../../components/promo/ProcessStep";
-import Footer from "../../components/promo/Footer";
+import Footer from "../../components/shared/Footer";
+import PricingCard from "../../components/promo/PricingCard";
+import TestimonialCard from "../../components/promo/TestimonialCard";
+import StatsCard from "../../components/promo/StatsCard";
+import ComparisonTable from "../../components/promo/ComparisonTable";
+import FAQSection from "../../components/promo/FAQSection";
 import {
   BotIcon,
   ZapIcon,
@@ -17,6 +22,9 @@ import {
   DatabaseIcon,
   ClockIcon,
   ShieldIcon,
+  UsersIcon,
+  ChartIcon,
+  StarIcon,
 } from "../../components/icons";
 
 export default function PromoPage() {
@@ -144,9 +152,153 @@ export default function PromoPage() {
     ],
   };
 
+  const pricingPlans = [
+    {
+      title: "Agent Sumo",
+      price: "Free",
+      period: "forever",
+      features: [
+        "Basic AI Chatbot",
+        "100 messages per month",
+        "Email support",
+        "Basic integrations",
+        "Community forum access",
+      ],
+      popular: false,
+      buttonText: "Get Started Free",
+      buttonHref: "/",
+      gradient:
+        "bg-gradient-to-br from-blue-600/20 to-purple-600/20 border border-blue-500/30",
+    },
+    {
+      title: "Agent Sumo Pro",
+      price: "$99",
+      period: "/month",
+      features: [
+        "Advanced AI with task automation",
+        "Unlimited messages",
+        "Priority support",
+        "Advanced integrations",
+        "Purchase order management",
+        "Inventory tracking",
+        "Requisition processing",
+        "API access",
+        "Custom workflows",
+        "Analytics dashboard",
+      ],
+      popular: true,
+      buttonText: "Start Pro Trial",
+      buttonHref: "/",
+      gradient:
+        "bg-gradient-to-br from-purple-600/20 to-indigo-600/20 border border-purple-500/30",
+    },
+  ];
+
+  const testimonials = [
+    {
+      name: "Sarah Johnson",
+      role: "Operations Manager",
+      company: "TechFlow Inc",
+      content:
+        "Agent Sumo Pro has transformed our procurement process. We've reduced processing time by 70% and eliminated manual errors completely.",
+      avatar: "/images/avatar/user-1.png",
+      rating: 5,
+    },
+    {
+      name: "Michael Chen",
+      role: "CTO",
+      company: "InnovateCorp",
+      content:
+        "The AI chatbot handles 80% of our customer inquiries automatically. Our support team can now focus on complex issues.",
+      avatar: "/images/avatar/user-2.png",
+      rating: 5,
+    },
+    {
+      name: "Emily Rodriguez",
+      role: "Supply Chain Director",
+      company: "Global Retail",
+      content:
+        "Inventory management has never been easier. Real-time tracking and automated reordering save us hours every week.",
+      avatar: "/images/avatar/user-3.png",
+      rating: 5,
+    },
+  ];
+
+  const stats = [
+    {
+      number: "10,000+",
+      label: "Active Users",
+      icon: UsersIcon,
+      color: "bg-gradient-to-r from-blue-500 to-purple-600",
+    },
+    {
+      number: "99.9%",
+      label: "Uptime",
+      icon: ShieldIcon,
+      color: "bg-gradient-to-r from-green-500 to-blue-600",
+    },
+    {
+      number: "70%",
+      label: "Time Saved",
+      icon: ClockIcon,
+      color: "bg-gradient-to-r from-purple-500 to-pink-600",
+    },
+    {
+      number: "24/7",
+      label: "Support",
+      icon: MessageIcon,
+      color: "bg-gradient-to-r from-orange-500 to-red-600",
+    },
+  ];
+
+  const comparisonFeatures = [
+    { name: "AI Chatbot", agentSumo: true, agentSumoPro: true },
+    {
+      name: "Message Limit",
+      agentSumo: "100/month",
+      agentSumoPro: "Unlimited",
+    },
+    { name: "Task Automation", agentSumo: false, agentSumoPro: true },
+    { name: "Purchase Orders", agentSumo: false, agentSumoPro: true },
+    { name: "Inventory Management", agentSumo: false, agentSumoPro: true },
+    { name: "API Access", agentSumo: false, agentSumoPro: true },
+    { name: "Priority Support", agentSumo: false, agentSumoPro: true },
+    { name: "Analytics Dashboard", agentSumo: false, agentSumoPro: true },
+    { name: "Custom Workflows", agentSumo: false, agentSumoPro: true },
+    { name: "Multi-language Support", agentSumo: true, agentSumoPro: true },
+  ];
+
+  const faqs = [
+    {
+      question: "What's the difference between Agent Sumo and Agent Sumo Pro?",
+      answer:
+        "Agent Sumo is our free tier with basic chatbot functionality and limited messages. Agent Sumo Pro includes advanced task automation, unlimited messages, purchase order management, inventory tracking, and enterprise features.",
+    },
+    {
+      question: "Can I integrate Agent Sumo with my existing systems?",
+      answer:
+        "Yes! Agent Sumo Pro offers comprehensive API access and pre-built integrations with popular business tools like ERP systems, accounting software, and CRM platforms.",
+    },
+    {
+      question: "Is my data secure with Agent Sumo?",
+      answer:
+        "Absolutely. We use enterprise-grade encryption, SOC 2 compliance, and role-based access control to ensure your data is always protected.",
+    },
+    {
+      question: "How quickly can I get started?",
+      answer:
+        "You can start using Agent Sumo immediately with our free tier. For Pro features, setup typically takes 1-2 business days with our onboarding team.",
+    },
+    {
+      question: "Do you offer custom solutions for enterprise clients?",
+      answer:
+        "Yes, we provide custom development and white-label solutions for enterprise clients. Contact our sales team for more information.",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
-      {/* <Navigation /> */}
+      <Navigation />
 
       <Hero
         title="Agent Sumo"
@@ -157,6 +309,30 @@ export default function PromoPage() {
         secondaryButtonText="View Features"
         secondaryButtonHref="/promo"
       />
+
+      {/* Stats Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-white mb-4">
+            Trusted by Businesses Worldwide
+          </h2>
+          <p className="text-gray-400 text-lg">
+            Join thousands of companies already transforming their operations
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {stats.map((stat, index) => (
+            <StatsCard
+              key={index}
+              number={stat.number}
+              label={stat.label}
+              icon={stat.icon}
+              color={stat.color}
+            />
+          ))}
+        </div>
+      </div>
 
       {/* Package Tabs */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -232,6 +408,94 @@ export default function PromoPage() {
             )
           )}
         </div>
+      </div>
+
+      {/* Pricing Section */}
+      <div className="bg-gradient-to-r from-blue-600/10 to-purple-600/10 border-t border-gray-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-white mb-4">
+              Simple, Transparent Pricing
+            </h2>
+            <p className="text-gray-400 text-lg">
+              Choose the plan that fits your business needs
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {pricingPlans.map((plan, index) => (
+              <PricingCard
+                key={index}
+                title={plan.title}
+                price={plan.price}
+                period={plan.period}
+                features={plan.features}
+                popular={plan.popular}
+                buttonText={plan.buttonText}
+                buttonHref={plan.buttonHref}
+                gradient={plan.gradient}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Comparison Table */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-white mb-4">
+            Feature Comparison
+          </h2>
+          <p className="text-gray-400 text-lg">
+            See exactly what each plan includes
+          </p>
+        </div>
+
+        <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700">
+          <ComparisonTable features={comparisonFeatures} />
+        </div>
+      </div>
+
+      {/* Testimonials Section */}
+      <div className="bg-gradient-to-r from-purple-600/10 to-indigo-600/10 border-t border-gray-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-white mb-4">
+              What Our Customers Say
+            </h2>
+            <p className="text-gray-400 text-lg">
+              Real stories from businesses using Agent Sumo
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <TestimonialCard
+                key={index}
+                name={testimonial.name}
+                role={testimonial.role}
+                company={testimonial.company}
+                content={testimonial.content}
+                avatar={testimonial.avatar}
+                rating={testimonial.rating}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* FAQ Section */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-white mb-4">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-gray-400 text-lg">
+            Find answers to common questions about Agent Sumo
+          </p>
+        </div>
+
+        <FAQSection faqs={faqs} />
       </div>
 
       {/* CTA Section */}
